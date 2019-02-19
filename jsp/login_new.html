@@ -13,12 +13,12 @@
 <meta name="keywords" content="首页_九次方大数据舆情系统">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>首页_数舆情系统</title>
-<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/main.css" media="screen">
-<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/homepage.css" media="screen">
-<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/jquery.fullPage.css">
-<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/main.js"></script>
-<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/jquery.fullPage.js"></script>
+<link rel="stylesheet" href="../css/main.css" media="screen">
+<link rel="stylesheet" href="../css/homepage.css" media="screen">
+<link rel="stylesheet" href="../css/jquery.fullPage.css">
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/jquery.fullPage.js"></script>
 
 <style>
 .contact-box{top: 40px;right:0; width: 200px;height:150px;
@@ -75,47 +75,47 @@ while(i--){document.createElement(e[i])}})()
 				return false;
 			}
  			// 改成ajax 请求 
- 			$.ajax({
- 				type:"POST",
- 				url : basePath + "login/loginInfo.do",
- 				data:{
-					"userName":userName,
-					"userPwd":userPwd,
-					"userValidate":validate
- 				},
- 				success: function(result){
-
- 					var jsonObject = JSON.parse(result);
- 					if(jsonObject.isSuccess=="SUCCESS"){
- 						window.location.href =basePath+ "/theme/themeBasic.do";
- 					}else{
-						 var errorInfo = jsonObject.errorJson;
-						 var errorMsg = "";
-						 if(errorInfo=="6"){
-							 window.location.href =basePath+ "/tmanager/themeManagerCenter.do";
-						 }else if(errorInfo=="0"){
-							 /* 0：验证码不正确 1：登陆用户ID不正确     2:登陆密码不正确     3:该企业下的产品过期       4: 用户已被停用或邀请中       5:登陆成功     6 主题没有*/  
-							 errorMsg = "验证码不正确";
-							 refresh_verify_code();
-							 $("#userValidate").val("");
-						 }else if(errorInfo=="1"){
-							 errorMsg = "登录用户名称不正确";
-							 $("#userName").val("");
-							 $("#userName").focus();
-						 }else if(errorInfo=="2"){
-							 errorMsg = "登录密码不正确";
-							 $("#userPwd").val("");
-							 $("#userPwd").focus();
-						 }else if(errorInfo=="4"){
-							 errorMsg = "该账号已经过期";
-						 }
-						 $(".errorPrompt").show();
-						 $(".prompt-text").text(errorMsg);
-						 return ; 						
- 					}
- 				}
- 			});
- 	    } ;	 
+// 			$.ajax({
+// 				type:"POST",
+// 				url : basePath + "login/loginInfo.do",
+// 				data:{
+//					"userName":userName,
+//					"userPwd":userPwd,
+//					"userValidate":validate
+// 				},
+// 				success: function(result){
+//
+// 					var jsonObject = JSON.parse(result);
+// 					if(jsonObject.isSuccess=="SUCCESS"){
+// 						window.location.href =basePath+ "/theme/themeBasic.do";
+// 					}else{
+//						 var errorInfo = jsonObject.errorJson;
+//						 var errorMsg = "";
+//						 if(errorInfo=="6"){
+//							 window.location.href =basePath+ "/tmanager/themeManagerCenter.do";
+//						 }else if(errorInfo=="0"){
+//							 /* 0：验证码不正确 1：登陆用户ID不正确     2:登陆密码不正确     3:该企业下的产品过期       4: 用户已被停用或邀请中       5:登陆成功     6 主题没有*/
+//							 errorMsg = "验证码不正确";
+//							 refresh_verify_code();
+//							 $("#userValidate").val("");
+//						 }else if(errorInfo=="1"){
+//							 errorMsg = "登录用户名称不正确";
+//							 $("#userName").val("");
+//							 $("#userName").focus();
+//						 }else if(errorInfo=="2"){
+//							 errorMsg = "登录密码不正确";
+//							 $("#userPwd").val("");
+//							 $("#userPwd").focus();
+//						 }else if(errorInfo=="4"){
+//							 errorMsg = "该账号已经过期";
+//						 }
+//						 $(".errorPrompt").show();
+//						 $(".prompt-text").text(errorMsg);
+//						 return ;
+// 					}
+// 				}
+// 			});
+// 	    } ;
  	    
  	   //看不清，换一张的单击事件
  		function refresh_verify_code() {
@@ -242,7 +242,7 @@ while(i--){document.createElement(e[i])}})()
 				<div class="clearfix advantage">
 					<div class="fl merititem">
 						<div class="img">
-							<img src="http://yuqing.9cfcf.com:80//images/homeimg2.png" />
+							<img src="../images/homeimg2.png" />
 						</div>
 						<h4 class="title2">数据采集</h4>
 						<p>采用全网爬虫、定向采集方式，信息抓取全面及时覆盖20万个媒体站点，覆盖：新闻、博客、微博客、论坛、微信公众号、电子报等各媒体类型数据源和134个农业专业类网站；</p>
@@ -250,7 +250,7 @@ while(i--){document.createElement(e[i])}})()
 					<div class="fl line"></div>
 					<div class="fl merititem">
 						<div class="img">
-							<img src="http://yuqing.9cfcf.com:80//images/homeimg4.png" />
+							<img src="../images/homeimg4.png" />
 						</div>
 						<h4 class="title2">索引技术</h4>
 						 <p>1)	亿级数据毫秒级返回；<br/>
@@ -259,7 +259,7 @@ while(i--){document.createElement(e[i])}})()
 					<div class="fl line"></div>
 					<div class="fl merititem">
 						<div class="img">
-							<img src="http://yuqing.9cfcf.com:80//images/homeimg3.png" />
+							<img src="../images/homeimg3.png" />
 						</div>
 						<h4 class="title2">文本挖掘</h4>
 						<p> 1)  文章权重计算<br/>
@@ -323,7 +323,7 @@ while(i--){document.createElement(e[i])}})()
 					<h4 class="fl">实时热词 智能采集</h4>
 				</div>
 				<div class="hotWords">
-					<iframe src="http://yuqing.9cfcf.com:80/jsp/chart/hotCloud.jsp" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+					<iframe src="./chart/hotCloud.jsp" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
 				</div>
 			</div>
 		</div>
@@ -335,7 +335,7 @@ while(i--){document.createElement(e[i])}})()
 			
 				<div class="bottombox" >
 					<div class="fl echarbox">
-						<iframe src="http://yuqing.9cfcf.com:80//chart/quanwangzhutu.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+						<iframe src="./chart/quanwangzhutu.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
 					</div>
 					<div class="fr navbox">
 						<div class="numbox">
@@ -389,23 +389,23 @@ function add(){
 }
 
     $(document).ready(function() {
-    	
-    	$.ajax({
-			type : "post",
-			dataType : "json",
-			url : "http://yuqing.9cfcf.com:80/login/getLogo.do",
-			success : function(data) {	
-				if(data==""){
-					var html=" <img src='../images/logo.png' height='80px;' alt='' />";
-				}else{
-					var html=" <img src='"+data+"' height='80px;' alt='' />";
-				}
-				$("#myDIv").html('大数据舆情监测平台');
-			},error:function(data){
-				var html=" <img src='../images/logo.png' height='80px;' alt='' />";
-              $("#myDIv").html('大数据舆情监测平台');
-          }
-			});
+        var html=" <img src='../images/logo.png' height='80px;' alt='' />";
+        $("#myDIv").html('大数据舆情监测平台');
+    }
+//    	$.ajax({
+//			type : "post",
+//			dataType : "json",
+//			url : "http://yuqing.9cfcf.com:80/login/getLogo.do",
+//			success : function(data) {
+//				if(data==""){
+//					var html=" <img src='../images/logo.png' height='80px;' alt='' />";
+//				}else{
+//					var html=" <img src='"+data+"' height='80px;' alt='' />";
+//				}
+//				$("#myDIv").html('大数据舆情监测平台');
+//			},error:function(data){
+//
+//			});
     	
     	setInterval('add()',4000);
     	
