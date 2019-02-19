@@ -1,0 +1,476 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="首页_九次方大数据舆情系统">
+<meta name="keywords" content="首页_九次方大数据舆情系统">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>首页_数舆情系统</title>
+<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/main.css" media="screen">
+<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/homepage.css" media="screen">
+<link rel="stylesheet" href="http://yuqing.9cfcf.com:80//css/jquery.fullPage.css">
+<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/main.js"></script>
+<script type="text/javascript" src="http://yuqing.9cfcf.com:80/js/jquery.fullPage.js"></script>
+
+<style>
+.contact-box{top: 40px;right:0; width: 200px;height:150px;
+    background: rgba(33,118,190,0.6);
+    border: 1px solid rgba(176,199,235,0.6);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:10px;}
+.contact-box p{height:30px;line-height:30px;}  
+</style>
+<!–[if IE]>
+<script>
+(function(){
+if(!/*@cc_on!@*/0)return;
+var e = "abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(','),
+i=e.length;
+while(i--){document.createElement(e[i])}})()
+</script>
+<![endif]–>
+<script type="text/javascript">
+ 		var basePath = "http://yuqing.9cfcf.com:80/";
+ 		document.onkeydown=function(event){
+ 	         var e = event || window.event || arguments.callee.caller.arguments[0];           
+ 	          if(e && e.keyCode==13){ // enter 键
+ 	              loginFunction();
+ 	         }
+ 	     };
+ 	    function loginFunction(){
+ 	    	
+ 	    	var userName = $("#userName").val();
+ 	    	var userPwd = $("#userPwd").val();
+ 	    	if (userName == "" || userName==null) {
+ 				$(".errorPrompt").show();
+ 				$(".prompt-text").text("用户名不能为空！");
+ 				$("#userName").focus();
+ 				return false;
+ 			}
+ 	    	if(userPwd=="" || userPwd == null){
+ 	    		
+ 	    		$(".errorPrompt").show();
+ 				$(".prompt-text").text("密码不能为空！");
+ 				$("#userPwd").focus();
+ 				return false;
+ 	    	}
+ 	    	
+ 	   		var validate = $("#userValidate").val();
+ 	    	
+	 	   	if (validate == "") {
+				$(".errorPrompt").show();
+				$(".prompt-text").text("验证码不能为空！");
+				$("#userValidate").focus();
+				refresh_verify_code();
+				return false;
+			}
+ 			// 改成ajax 请求 
+ 			$.ajax({
+ 				type:"POST",
+ 				url : basePath + "login/loginInfo.do",
+ 				data:{
+					"userName":userName,
+					"userPwd":userPwd,
+					"userValidate":validate
+ 				},
+ 				success: function(result){
+
+ 					var jsonObject = JSON.parse(result);
+ 					if(jsonObject.isSuccess=="SUCCESS"){
+ 						window.location.href =basePath+ "/theme/themeBasic.do";
+ 					}else{
+						 var errorInfo = jsonObject.errorJson;
+						 var errorMsg = "";
+						 if(errorInfo=="6"){
+							 window.location.href =basePath+ "/tmanager/themeManagerCenter.do";
+						 }else if(errorInfo=="0"){
+							 /* 0：验证码不正确 1：登陆用户ID不正确     2:登陆密码不正确     3:该企业下的产品过期       4: 用户已被停用或邀请中       5:登陆成功     6 主题没有*/  
+							 errorMsg = "验证码不正确";
+							 refresh_verify_code();
+							 $("#userValidate").val("");
+						 }else if(errorInfo=="1"){
+							 errorMsg = "登录用户名称不正确";
+							 $("#userName").val("");
+							 $("#userName").focus();
+						 }else if(errorInfo=="2"){
+							 errorMsg = "登录密码不正确";
+							 $("#userPwd").val("");
+							 $("#userPwd").focus();
+						 }else if(errorInfo=="4"){
+							 errorMsg = "该账号已经过期";
+						 }
+						 $(".errorPrompt").show();
+						 $(".prompt-text").text(errorMsg);
+						 return ; 						
+ 					}
+ 				}
+ 			});
+ 	    } ;	 
+ 	    
+ 	   //看不清，换一张的单击事件
+ 		function refresh_verify_code() {
+ 			var v = Math.random();
+ 			$("#checkCodeImg").attr("src", "http://yuqing.9cfcf.com:80/login/loginCode.do?id=" + v);
+		}
+  
+ 	   
+ 	   
+ 	   
+		$(function() {
+			var msg = "";
+			if (msg) {
+				$(".errorPrompt").show();
+				$(".prompt-text").text(msg);
+			} 
+			$("#login-btn").click(function() {
+				loginFunction();
+			});
+			
+			$(".contact-title").hover(function(){
+				$(".contact-box").show();
+				$(".loginBox").hide();
+			},function(){
+				$(".contact-box").hide();
+			});
+		});
+</script>
+
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"65517",secure:"49193"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-44" data-genuitec-path="/SearchWeb_OME/WebRoot/jsp/login_new.jsp">
+	<div class="slide-box" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-44" data-genuitec-path="/SearchWeb_OME/WebRoot/jsp/login_new.jsp">
+		<ul id="slide">
+			<li id="#slide1"><a href="#box1"></a><i class="clk"></i></li>
+			<li id="#slide2"><a href="#box2"></a><i></i></li>
+			<li id="#slide3"><a href="#box3"></a><i></i></li>
+			<li id="#slide4"><a href="#box4"></a><i></i></li>
+			<li id="#slide5"><a href="#box5"></a><i></i></li>
+			<li id="#slide6"><a href="#box6"></a><i></i></li>
+			<!-- <li id="#slide7"><a href="#box7"></a><i></i></li> -->
+		</ul>
+	</div>
+	<div class="home-header" style=" height: 90px">
+		<div  class="clearfix head-con">
+		
+		
+		    <div id="myDIv" class="clearfix fl" style="color: #f93b47;font-size: 40px" ></div>
+			
+			<div class="clearfix fr iconbox pr" style="margin-top: 47px;">
+				<a href="javascript:openLoginBox();"><i class="homeicon icon-user fl"></i><span class="fl">登录</span></a>
+				<div class="pa loginBox" style="display:none;">
+					<h5>会员登录</h5>
+					<!-- 登录JS 暂时开始############################################################################################ -->
+					<!-- 登录JS 暂时结束############################################################################################ -->
+					<form id="login_form">
+						<div class="inputbox">
+							<i class="homeicon icon-u"></i><input name="userName" id="userName" type="text" placeholder="用户名">
+						</div>
+						<div class="inputbox">
+							<i class="homeicon icon-p"></i><input name="userPwd" id="userPwd" type="password" placeholder="密码">
+						</div>
+						<div class="valibox">
+							<input id="userValidate" name="userValidate" type="text" placeholder="验证码"> 
+									<img src="http://yuqing.9cfcf.com:80/login/loginCode.do?id=" +Math.random();    onclick="refresh_verify_code()"
+								id="checkCodeImg" /> <span onclick="refresh_verify_code()">换一张</span>
+						</div>
+						<!-- <button type="submit" class="loginBtn"  onclick="return false;">登录</button> -->
+						 <a href="javascript:void(0)" class="loginBtn"  id="login-btn" >登录</a>
+						 <span class="errorPrompt" style="display: none; margin-left: 90px;"> <i  style="margin-left: 80px;"  class="fl icon icon-minus"></i> <span class="fl prompt-text"></span>
+					</form>
+				</div>
+				<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				 <!--<a href="http://yuqing.9cfcf.com:80/jsp/shenqingshiyong.jsp"><i class="homeicon icon-trial fl"></i><span class="fl">申请试用</span></a> -->
+				<a href="javascript:;" class="contact-title"><i class="homeicon icon-contact fl"></i><span class="fl">联系我们</span></a>
+				<div class="pa contact-box" style="display:none;">
+					<p>联系人：何先生</p>
+					<p>邮箱：hyr@jusfoun.com</p>
+					<p>电话：13641069987</p>
+					<p>地址：北京市海淀区王庄路1号清华同方科技广场D座西楼16层</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="fullpage">
+		<!-- 2560*1440    640*1001 -->
+		<div class="section box1" data-menuanchor="box1" id="box_1">
+			<div class="clearfix contents">
+				<div class="fl titlebox">
+					<img src="http://yuqing.9cfcf.com:80//images/homeimg1.png" />
+				</div>
+				<div class="fr navbox">
+					<a href="#box2" class="a1">平台特点</a> 
+					<a href="#box3" class="a2">核心技术</a> 
+					<a href="#box4" class="a3">团队优势</a>
+					<a href="#box5" class="a4">实时热词</a> 
+					<a href="#box6" class="a5">全网监测</a> 
+					<!-- <a href="#box7" class="a6">产品案例</a> -->
+				</div>
+			</div>
+		</div>
+		<div class="section box5" data-menuanchor="box2" id="box_2">
+			<div class="clearfix contents">
+				<div class="title">
+					<h4 class="fl">平台特点</h4>
+					<span>  1、全网络覆盖海量信息源，数据最快获取小于1分钟<br />
+							2、数据筛选准确，强大中文语义挖掘能力<br />
+							3、多维度、可视化数据分析<br />
+							4、信息推送快<br />
+							5、监测及时，更早发现
+				</div>
+				<div class="featuresbox">
+					<div class="outerRing"></div>
+					<div class="innerRing"></div>
+					<div class="centerRing"></div>
+				</div>
+			</div>
+		</div>
+		<div class="section box4" data-menuanchor="box3" id="box_3">
+			 <div class="clearfix contents">
+			<div class="title">
+                <h4 class="fl">核心技术</h4>
+            </div>
+			
+				<div class="clearfix advantage">
+					<div class="fl merititem">
+						<div class="img">
+							<img src="http://yuqing.9cfcf.com:80//images/homeimg2.png" />
+						</div>
+						<h4 class="title2">数据采集</h4>
+						<p>采用全网爬虫、定向采集方式，信息抓取全面及时覆盖20万个媒体站点，覆盖：新闻、博客、微博客、论坛、微信公众号、电子报等各媒体类型数据源和134个农业专业类网站；</p>
+					</div>
+					<div class="fl line"></div>
+					<div class="fl merititem">
+						<div class="img">
+							<img src="http://yuqing.9cfcf.com:80//images/homeimg4.png" />
+						</div>
+						<h4 class="title2">索引技术</h4>
+						 <p>1)	亿级数据毫秒级返回；<br/>
+							2)	支持各种维度统计分析；</p>
+					</div>
+					<div class="fl line"></div>
+					<div class="fl merititem">
+						<div class="img">
+							<img src="http://yuqing.9cfcf.com:80//images/homeimg3.png" />
+						</div>
+						<h4 class="title2">文本挖掘</h4>
+						<p> 1)  文章权重计算<br/>
+							2)  传播轨迹分析<br/>
+							3)  聚类/热点提取<br/>
+							4)  爆发/倾向趋势分析
+						</p>
+					</div>
+				</div>
+			</div> 
+			
+			
+		</div>
+		<div class="section box6" data-menuanchor="box4" id="box_6">
+			<div class="clearfix contents">
+				<div class="title">
+					<h4 class="fl">团队优势</h4>
+				</div>
+				<div class="clearfix advantagebox">
+				
+					<div class="fl item">
+						<div class="img">
+							<i class="iconimg1"></i>
+						</div>
+						<h4 class="navtitle">经验</h4>
+						<p>有多年的大数据舆情运营经验主要服务于政府、企业、银行；
+							拥有海量的行业数据；完整的舆情监测理论体系；科学、专业的舆情工作体制
+						</p>
+					</div>
+					<div class="fl item"> 
+						<div class="img">
+							<i class="iconimg2"></i>
+						</div>
+						<h4 class="navtitle">系统</h4>
+						<p>信息监测与分析、数据挖掘与整合、
+							全天候信息预警、时间深度分析
+						</p>
+					</div>
+					<div class="fl item">
+						<div class="img">
+							<i class="iconimg3"></i>
+						</div>
+						<h4 class="navtitle">技术</h4>
+						<p>大数据云计算：数百台服务器的舆情云数据汇总，定向采集+全网搜索+数据中心
+						</p>
+					</div>
+					<div class="fl item">
+						<div class="img">
+							<i class="iconimg4"></i>
+						</div>
+						<h4 class="navtitle">服务</h4>
+						<p>系统运维、人工监测服务、舆情报告服务、舆情处置服务等
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section box3" data-menuanchor="box5" id="box_4">
+			<div class="clearfix contents">
+				<div class="title">
+					<h4 class="fl">实时热词 智能采集</h4>
+				</div>
+				<div class="hotWords">
+					<iframe src="http://yuqing.9cfcf.com:80/jsp/chart/hotCloud.jsp" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="section box2" data-menuanchor="box6" id="box_5">
+			<div class="clearfix contents">
+			 <div class="title">
+                <h4 class="fl">全网监测</h4>
+            </div>
+			
+				<div class="bottombox" >
+					<div class="fl echarbox">
+						<iframe src="http://yuqing.9cfcf.com:80//chart/quanwangzhutu.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+					</div>
+					<div class="fr navbox">
+						<div class="numbox">
+							<h3>全网入库信息总量（条）</h3>
+							<p>
+								<span id="countTotal">1,512,335,487</span>
+							</p>
+						</div>
+						<div class="numbox">
+							<h3>今日入库信息总量（条）</h3>
+							<p>
+								<span id="countDay">1,833,640</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		 
+	</div>
+</body>
+<script>
+
+/**转换千字符**/
+function  commafy(num){  
+    num  =  num+"";  
+    var  re=/(-?\d+)(\d{3})/  
+    while(re.test(num)){  
+      num=num.replace(re,"$1,$2")  
+    }  
+    return  num;  
+} 
+
+/**千字符数字**/
+function  commafyN(reStr){
+    var resultStr = reStr.replace(/,/g, "");
+    //alert(resultStr);
+    return   parseInt(resultStr);  
+}  
+
+function add(){
+	var countTotal = commafyN($("#countTotal").text());
+	var countDay =commafyN($("#countDay").text());
+	//alert("原始值："+countDay);
+	var count = Math.floor(Math.random()*450)+50;
+	
+	$("#countTotal").text(commafy(countTotal+count));
+	$("#countDay").text(commafy(countDay+count));
+	
+}
+
+    $(document).ready(function() {
+    	
+    	$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "http://yuqing.9cfcf.com:80/login/getLogo.do",
+			success : function(data) {	
+				if(data==""){
+					var html=" <img src='../images/logo.png' height='80px;' alt='' />";
+				}else{
+					var html=" <img src='"+data+"' height='80px;' alt='' />";
+				}
+				$("#myDIv").html('大数据舆情监测平台');
+			},error:function(data){
+				var html=" <img src='../images/logo.png' height='80px;' alt='' />";
+              $("#myDIv").html('大数据舆情监测平台');
+          }
+			});
+    	
+    	setInterval('add()',4000);
+    	
+        $('#fullpage').fullpage({
+            //Navigation
+            menu: true,
+            anchors:['box1', 'box2', 'box3','box4','box5','box6','box7'],
+            navigation: false,
+            navigationPosition: 'right',
+            navigationTooltips: ['box1', 'box2', 'box3','box4','box5','box6','box7'],
+            slidesNavigation: true,
+            slidesNavPosition: 'bottom',
+
+            //Scrolling
+            css3: true,
+            scrollingSpeed: 500,
+            autoScrolling: true,
+            scrollBar: false,
+            easing: 'easeInQuart',
+            easingcss3: 'ease',
+            loopBottom: false,
+            loopTop: false,
+            loopHorizontal: true,
+            continuousVertical: false,
+            normalScrollElements: '#element1, .element2',
+            scrollOverflow: false,
+            touchSensitivity: 15,
+            normalScrollElementTouchThreshold: 5,
+
+            //Accessibility
+            keyboardScrolling: true,
+            animateAnchor: true,
+            recordHistory: true,
+
+            //Design
+            controlArrows: true,
+            verticalCentered: true,
+            resize : true,
+            fixedElements: '#header, .footer',
+            responsive: 0,
+
+            //Custom selectors
+            sectionSelector: '.section',
+            slideSelector: '.slide',
+
+            //events
+            afterLoad: function(anchorLink, index){
+                //using anchorLink
+                $("#slide").find('i').removeClass('clk');
+                $("#slide").find("i").eq(index-1).addClass('clk');
+            }
+        });
+    });
+
+    $(document).bind("click",function(e){
+        var target = $(e.target);
+        if(target.closest(".iconbox").length == 0){
+            $(".loginBox").hide();
+        }
+    });
+
+    function openLoginBox(){
+        $('.loginBox').slideToggle('slow');
+    }
+    
+</script>
+
+</html>

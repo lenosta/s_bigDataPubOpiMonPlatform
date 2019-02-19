@@ -1,0 +1,168 @@
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">var basepath = "http://yuqing.9cfcf.com:80/"; </script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    
+    <link rel="stylesheet" href="http://yuqing.9cfcf.com:80/css/jquery.fullPage.css" >
+    <link rel="stylesheet" href="http://yuqing.9cfcf.com:80/css/main.css" >
+    <link rel="stylesheet" href="http://yuqing.9cfcf.com:80/css/homepage.css" >
+    
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"65517",secure:"49193"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+<body class="trialBody"  data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-52" data-genuitec-path="/SearchWeb_OME/WebRoot/jsp/shenqingshiyong.jsp">
+    <div class="home-header" style=" height: 125px" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-52" data-genuitec-path="/SearchWeb_OME/WebRoot/jsp/shenqingshiyong.jsp">
+        <div class="clearfix head-con">
+            <div class="clearfix fl" style="color: #f93b47;font-size: 40px">大数据舆情监测平台
+               <!--  <a href="javascript:;"><i class="homeicon icon-logo fl"></i><span class="hometitle fl">大数据情报服务平台</span></a> -->
+            </div>
+            <div class="clearfix fr iconbox">
+                <!-- <a href="javascript:;"><i class="homeicon icon-user fl"></i><span class="fl">登录</span></a>
+                <a href="javascript:;"><i class="homeicon icon-trial fl"></i><span class="fl">申请试用</span></a>
+                <a href="javascript:;"><i class="homeicon icon-contact fl"></i><span class="fl">联系我们</span></a> -->
+            </div>
+        </div>
+    </div>
+    <div class="trialContent" style="padding-top: 125px">
+        <h5 class="clearfix">
+            <i class="fl homeicon icon-label"></i>
+            <span class="title">大数据情报服务申请方法</span>
+            <span class="span">欢迎您加入大数据情报 ，如需申请试用，请填写以下信息。</span>
+        </h5>
+        <p class="clearfix"><span class="fl bluetxt">填写申请信息</span><i class="fl red24">*</i><span class="fl span">号为必填项</span></p>
+     
+        <table class="trialTable">
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr">公司名称</span></th>
+                <td><input type="text" class="input-txt" id="companyName" name="companyName"/></td>
+            </tr>
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr">姓名</span></th>
+                <td><input type="text" class="input-txt" id="userName" name="userName"/></td>
+            </tr>
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr">职务</span></th>
+                <td><input type="text" class="input-txt" id="userJob" name="userJob"/></td>
+            </tr>
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr">手机号码</span></th>
+                <td><input placeholder="1371878xxxx" type="text" class="input-txt" id="phone" name="phone"/></td>
+            </tr>
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr" >办公电话</span></th>
+                <td><input placeholder="010-60318647" type="text" class="input-txt" id="telphone" name="telphone"/></td>
+            </tr>
+            <tr>
+                <th><i class="fr red24">*</i><span class="fr">电子邮箱</span></th>
+                <td><input placeholder="xxx@qq.com"  type="text" class="input-txt" id="email" name="email"/></td>
+            </tr>
+            <tr>
+                <th valign="top"><span class="fr describe">需求描述</span></th>
+                <td><textarea class="textarea" id="description" name="description"></textarea></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <button type="button" class="btn-submit" id="tijiao">提交</button>
+                    <p class="span">提交成功后，我们会尽快与您联系。</p>
+                </td>
+            </tr>
+        </table>
+       
+    </div>
+    <script src="http://yuqing.9cfcf.com:80/js/jquery-1.11.3.min.js"></script>
+</body>
+<script>
+	$("#tijiao").click(function(){
+		var companyName=$("#companyName").val();
+		var userJob=$("#userJob").val();
+		var userName=$("#userName").val();
+		var phone=$("#phone").val();
+		var telphone=$("#telphone").val();
+		var email=$("#email").val();
+		var description=$("#description").val();
+		
+		if(companyName.trim()=="" && companyName.trim().length<=0){
+			alert("公司名称不能为空。");
+			$("#companyName").focus();
+			return;
+		}
+		if(userName.trim()=="" && userName.trim().length<=0){
+			alert("姓名不能为空。");
+			$("#userName").focus();
+			return;
+		}
+		if(userJob.trim()=="" && userJob.trim().length<=0){
+			alert("职务不能为空。");
+			$("#userJob").focus();
+			return;
+		}
+		if(phone.trim()=="" && phone.trim().length<=0){
+			alert("手机号码不能为空。");
+			$("#phone").focus();
+			return;
+		}
+		 var re = /^1\d{10}$/;
+		 if (!re.test(phone.trim())) {
+        	 alert("手机号码不正确。");
+        	 $("#phone").focus();
+			return;
+   		 } 
+		 
+		if(telphone.trim()=="" && telphone.trim().length<=0){
+			alert("办公电话不能为空。");
+			$("#telphone").focus();
+			return;
+		}
+		
+		var re2 = /^0\d{2,3}-?\d{7,8}$/;
+		if(!re2.test(telphone.trim())){
+        	alert("办公电话格式不正确。");
+        	$("#telphone").focus();
+			return;
+    	}
+		if(email.trim()=="" && email.trim().length<=0){
+			alert("电子邮箱不能为空。");
+			$("#email").focus();
+			return;
+		}
+		 var re3 = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+		 if(!re3.test(email.trim())){
+        	alert("电子邮箱格式不正确。");
+        	$("#email").focus();
+			return;
+        	
+    	}
+		 $.ajax({
+		type : "post",
+		url : basepath+"login/saveProbation.do",
+		dataType : "json",
+		 data : {"companyName":companyName,"userName":userName,"userJob":userJob,"phone":phone,"telphone":telphone,"email":email,"description":description},
+		success : function(data) {
+			   if(data=="2"){
+			   		alert("您已提交申请，请勿重复提交申请！");
+			   		window.location=basepath+"/jsp/login_new.jsp"
+			   }else if(data=="1"){
+					alert("感情您的申请，我们工作人员会尽快与您取得联系！");
+					window.location=basepath+"/jsp/login_new.jsp"
+				}else{
+					alert("提交申请试用失败，请重试。");
+				}
+			}		
+	 }); 
+	 
+	
+	});
+</script>
+</html>
+
