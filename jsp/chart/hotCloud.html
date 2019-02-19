@@ -73,11 +73,38 @@
 	var basepath = 'http://yuqing.9cfcf.com:80/';
 	/**      初始化加载            **/
     $(function(){
+
+
+        var html = new Array();
+        var data = ["扫黑除恶","刘华锋","藤井实彦","番石榴","姹借溅","郑宗龙","织里童装","乡村振兴","云霄县","层代币","涉黑涉恶","慰安妇铜像","虹鳟","抗灾救灾","溆浦","蓝孔雀","陈传斌","郑德荣","黄婷婷","吴皖俊","姚军红","王楚钦","双胞胎泉","贸易争端","摩拜","屏幕指纹","祭龙母","黄范铭","萨摩亚","刘成义","刘知侠","王忠磊","瑞典民主党","柯洛克","阿香婆","刘高阳","曹玉莲","陆兆禧","李春林","李盈莹","秋美爱","刘某涛","刘倍贝","朱一龙","申真谞","班会课","王晓辰","移风易俗","巨化股份","酒局圈"]
+        if(data){
+            var list = data;
+            for(i=0;i<list.length;i++){
+
+                if(i%4 ==1){
+                    html.push('<a class="red" target="_blank" href='+basepath+'search/advancedSearch.do?searchKeys='+list[i]+'>'+list[i]+'</a>');
+                }else if(i%4 ==2){
+                    html.push('<a class="blue" target="_blank" href='+basepath+'search/advancedSearch.do?searchKeys='+list[i]+'>'+list[i]+'</a>');
+                }else if(i%4 ==3){
+                    html.push('<a class="yellow" target="_blank" href='+basepath+'search/advancedSearch.do?searchKeys='+list[i]+'>'+list[i]+'</a>');
+                }else{
+                    html.push('<a target="_blank" href='+basepath+'search/advancedSearch.do?searchKeys='+list[i]+'>'+list[i]+'</a>');
+                }
+                html.push('');
+            }
+
+        }
+
+
+
+
+
+
+
+
+        $("#tagbox").html(html.join(''));
     
-       
-  
-    
-    	$.ajax({
+    	/*$.ajax({
     		type : "post",
     		url : basepath+"theme/hotCloud.do",
     		dataType : "json",
@@ -113,7 +140,7 @@
     			$("#tagbox").html(html.join(''));
     		
     		}		
-    	 });
+    	 });*/
         
         
         
